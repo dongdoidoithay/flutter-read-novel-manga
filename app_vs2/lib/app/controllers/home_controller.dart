@@ -9,7 +9,7 @@ class HomeController extends GetxController with BaseController {
   HomeController({required this.repository}) : assert(repository != null);
   //final langList = <LangModel>[].obs;
   //final _langItem = LangModel().obs;
-  final langList = <LangModel>[].obs;
+  var langList = <LangModel>[].obs;
   var langItem = LangModel().obs;
 
   @override
@@ -33,9 +33,13 @@ class HomeController extends GetxController with BaseController {
     repository.flashRepository.printError();
   }
 
-  getContry() async {
-    langList.value = await repository.homeRepository.getAllCountry();
-    print(langList);
+  void getContry() async {
+    /*   repository.homeRepository
+        .getAllCountry()
+        .then((value) => ({langList.value = value})); */
+    var getLang = await repository.homeRepository.getAllCountry();
+    if (getLang != null) langList.assignAll(getLang);
+    update();
   }
 
   changeContry(value) {

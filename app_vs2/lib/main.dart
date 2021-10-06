@@ -1,4 +1,4 @@
-//import 'package:get_storage/get_storage.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'app/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ Future<void> main() async {
     statusBarColor: AppColors.primary.withOpacity(1),
   ));
   //set storage
-  //await GetStorage.init();
+  await GetStorage.init();
   //
 
   runApp(GetMaterialApp(

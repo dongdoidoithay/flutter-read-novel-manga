@@ -36,7 +36,7 @@ dependencies:
   get:
   dio:
   cached_network_image:
-  #get_storage:
+  get_storage:
   flutter_svg:
 
 dev_dependencies:

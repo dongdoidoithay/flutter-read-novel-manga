@@ -1,3 +1,7 @@
+import 'package:flutter_svg/svg.dart';
+
+import '/core/utils/responsive.dart';
+
 import '/app/controllers/home_controller.dart';
 import '/core/widgets/loading_widget.dart';
 import 'package:get/get.dart';
@@ -17,18 +21,54 @@ class LangsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var ctrHome = Get.find<HomeController>();
-    return Container(
-      width: 50,
-      decoration: const BoxDecoration(
-        color: Colors.blueAccent,
-      ),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return const CoutryWidget(name: 'Truyen chu', iconName: "vi");
-        },
-        itemCount: 3,
-      ),
-    );
+    //ctrHome.getContry();
+    final bool isDesktop = Responsive.isDesktop(context);
+    return Obx(() {
+      return Card(
+        margin: EdgeInsets.symmetric(horizontal: isDesktop ? 5.0 : 0.0),
+        elevation: isDesktop ? 1.0 : 0.0,
+        shape: isDesktop
+            ? RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))
+            : null,
+        child: Container(
+          height: 60.0,
+          color: Colors.white,
+          child: ListView.builder(
+            padding: const EdgeInsets.symmetric(
+              vertical: 10.0,
+              horizontal: 4.0,
+            ),
+            scrollDirection: Axis.horizontal,
+            itemCount: ctrHome.langList.length,
+            itemBuilder: (BuildContext context, int index) {
+              if (ctrHome.langList.length == 0)
+                return LoadingWidget();
+              else {
+                final lang = ctrHome.langList[index];
+                // if (index == 0) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(lang.name!),
+                );
+              }
+              //}
+              /* return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: CircleAvatar(
+                  radius: 20.0,
+                  //backgroundColor: Palette.facebookBlue,
+                  child: CircleAvatar(
+                    radius: 20.0,
+                    backgroundColor: Colors.grey[200],
+                    backgroundImage:
+                        const CoutryWidget(name: "Novels", iconName: "vi"),
+                  ),
+                ),
+              ); */
+            },
+          ),
+        ),
+      );
+    });
   }
 }

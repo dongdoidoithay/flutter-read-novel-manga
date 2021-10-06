@@ -51,13 +51,13 @@ class HomePageMobile extends GetView<HomeController> {
             ),
           ],
         ),
-        SliverToBoxAdapter(
-          child: LangsList(lstlang: datalang),
+        const SliverToBoxAdapter(
+          child: Text("LSD"),
         ),
-        const SliverPadding(
-          padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
           sliver: SliverToBoxAdapter(
-            child: Text("Text"),
+            child: LangsList(lstlang: datalang),
           ),
         ),
         SliverPadding(
