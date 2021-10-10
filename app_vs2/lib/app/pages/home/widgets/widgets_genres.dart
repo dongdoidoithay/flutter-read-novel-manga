@@ -1,8 +1,8 @@
 import 'package:app_vs2/core/utils/responsive.dart';
 import 'package:flutter/material.dart';
 
-class SlideList extends StatelessWidget {
-  const SlideList({
+class GenresList extends StatelessWidget {
+  const GenresList({
     Key? key,
   }) : super(key: key);
 
@@ -17,14 +17,14 @@ class SlideList extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
       width: double.infinity,
-      height: _height * 0.17,
+      height: _height * 0.12,
       decoration: const BoxDecoration(
         color: Colors.blueAccent,
         gradient: LinearGradient(
           colors: [Colors.red, Colors.cyan],
         ),
       ),
-      child: const Text('Slide'),
+      child: const Text('genres'),
     );
   }
 }

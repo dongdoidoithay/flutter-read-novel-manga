@@ -9,6 +9,7 @@ class HomeController extends GetxController with BaseController {
   HomeController({required this.repository}) : assert(repository != null);
   //final langList = <LangModel>[].obs;
   //final _langItem = LangModel().obs;
+  var loading = true.obs;
   var langList = <LangModel>[].obs;
   var langItem = LangModel().obs;
 
@@ -38,8 +39,11 @@ class HomeController extends GetxController with BaseController {
         .getAllCountry()
         .then((value) => ({langList.value = value})); */
     var getLang = await repository.homeRepository.getAllCountry();
-    if (getLang != null) langList.assignAll(getLang);
-    update();
+    if (getLang.isNotEmpty) {
+      loading.value = false;
+      langList.assignAll(getLang);
+    }
+    //update();
   }
 
   changeContry(value) {
