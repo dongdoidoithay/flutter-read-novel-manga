@@ -50,7 +50,12 @@ class HomePageMobile extends GetView<HomeController> {
           actions: [
             CircleButton(
               icon: Icons.search,
-              iconSize: 25.0,
+              iconSize: 23.0,
+              onPressed: () => searchInfo(),
+            ),
+            CircleButton(
+              icon: Icons.notifications_active,
+              iconSize: 23.0,
               onPressed: () => searchInfo(),
             ),
           ],

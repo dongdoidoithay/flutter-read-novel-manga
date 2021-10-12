@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 class CoutryWidget extends StatelessWidget {
   final String name;
   final String iconName;
+
   const CoutryWidget({Key? key, required this.name, required this.iconName})
       : super(key: key);
 
@@ -25,6 +26,8 @@ class CoutryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //check active
+
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white, //
