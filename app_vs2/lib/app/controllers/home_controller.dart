@@ -52,13 +52,15 @@ class HomeController extends GetxController with BaseController {
   void loadbycontry() async {
     var _slidelist = <Documents>[];
     await repository.homeRepository.getHome("novels", "en", _slidelist);
-    if (_slidelist.length > 0) slideList.assignAll(_slidelist);
+    if (_slidelist.isNotEmpty) {
+      loadinghome.value = false;
+      slideList.assignAll(_slidelist);
+    }
   }
 
   void loadhome() async {}
 
   changeContry(value) {
     langItem.value = value;
-    //load change country
   }
 }

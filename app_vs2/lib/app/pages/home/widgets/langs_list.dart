@@ -26,7 +26,7 @@ class LangsList extends StatelessWidget {
   Widget buildList() {
     var ctrHome = Get.find<HomeController>();
     if (ctrHome.loading.value == true) {
-      print('#->loading');
+      //print('#->loading');
       return const LoadingWidget();
     } else {
       return ListView.builder(

@@ -1,4 +1,5 @@
 import 'package:app_vs2/core/utils/responsive.dart';
+import 'package:app_vs2/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class GenresList extends StatelessWidget {
@@ -20,9 +21,7 @@ class GenresList extends StatelessWidget {
       height: _height * 0.12,
       decoration: const BoxDecoration(
         color: Colors.blueAccent,
-        gradient: LinearGradient(
-          colors: [Colors.red, Colors.cyan],
-        ),
+        gradient: Palette.createRoomGradient,
       ),
       child: const Text('genres'),
     );

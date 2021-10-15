@@ -1,10 +1,14 @@
+import 'package:app_vs2/app/data/models/models.dart';
 import 'package:app_vs2/app/pages/home/widgets/slide/slide_widget.dart';
 import 'package:app_vs2/core/utils/responsive.dart';
+import 'package:app_vs2/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class SlideList extends StatelessWidget {
+  final List<Documents> items;
   const SlideList({
     Key? key,
+    required this.items,
   }) : super(key: key);
 
   @override
@@ -14,6 +18,9 @@ class SlideList extends StatelessWidget {
     final bool isDesktop = Responsive.isDesktop(context);
     final double _width = Responsive.width(context);
     final double _height = Responsive.height(context);
+
+    //print('--> count');
+    //print(items.length);
     return Container(
       //padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
       margin:
@@ -21,10 +28,8 @@ class SlideList extends StatelessWidget {
       width: double.infinity,
       height: _height * 0.17,
       decoration: const BoxDecoration(
-        color: Colors.blueAccent,
-        gradient: LinearGradient(
-          colors: [Colors.red, Colors.cyan],
-        ),
+        //color: Colors.blueAccent,
+        gradient: Palette.storyGradient,
       ),
       child: const SlideWidget(),
     );

@@ -1,18 +1,20 @@
+import 'package:app_vs2/core/utils/timeUtils.dart';
+
 import 'detail_model.dart';
 
 class Documents {
-  Documents({
-    this.idDocument,
-    this.idDoc,
-    this.nameOther,
-    this.name,
-    this.nameSeo,
-    this.image,
-    this.auth,
-    this.date,
-    this.type,
-    this.detailDocuments,
-  });
+  Documents(
+      {this.idDocument,
+      this.idDoc,
+      this.nameOther,
+      this.name,
+      this.nameSeo,
+      this.image,
+      this.auth,
+      this.date,
+      this.type,
+      this.detailDocuments,
+      this.dateText});
 
   final String? idDocument;
   final String? idDoc;
@@ -22,6 +24,7 @@ class Documents {
   final String? image;
   final String? auth;
   final DateTime? date;
+  final String? dateText;
   final String? type;
   final List<DetailDocuments>? detailDocuments;
 
@@ -34,6 +37,8 @@ class Documents {
         image: json["image"] ?? null,
         auth: json["auth"] ?? null,
         date: json["date"] == null ? null : DateTime.parse(json["date"]),
+        dateText:
+            json["date"] == null ? null : TimeUtils.textTime(json["date"]),
         type: json["type"] ?? null,
         detailDocuments: json["detail_documents"] == null
             ? null

@@ -1,3 +1,4 @@
+import 'package:app_vs2/app/data/models/document_model.dart';
 import 'package:app_vs2/app/pages/home/widgets/widgets_genres.dart';
 
 import '/app/pages/home/widgets/widgets_slide.dart';
@@ -29,7 +30,7 @@ class HomePageMobile extends GetView<HomeController> {
   Widget build(BuildContext context) {
     //call dynamic
     List<LangModel> datalang = controller.langList.toList();
-
+    List<Documents> dataslide = controller.slideList.toList();
     return CustomScrollView(
       controller: scrollController,
       slivers: [
@@ -66,10 +67,10 @@ class HomePageMobile extends GetView<HomeController> {
             child: LangsList(lstlang: datalang),
           ),
         ),
-        const SliverPadding(
-          padding: EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
           sliver: SliverToBoxAdapter(
-            child: SlideList(),
+            child: SlideList(items: dataslide),
           ),
         ),
         const SliverPadding(
