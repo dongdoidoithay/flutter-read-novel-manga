@@ -9,22 +9,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-class SlideWidget extends StatefulWidget {
-  const SlideWidget({Key? key}) : super(key: key);
+class ItemGroupWidget extends StatefulWidget {
+  const ItemGroupWidget({Key? key}) : super(key: key);
 
   @override
-  State<SlideWidget> createState() => _SlideWidgetState();
+  State<ItemGroupWidget> createState() => _ItemGroupWidgetState();
 }
 
-class _SlideWidgetState extends State<SlideWidget> {
+class _ItemGroupWidgetState extends State<ItemGroupWidget> {
   bool firts = true;
   int currentselect = 1;
   var ctrHome = Get.find<HomeController>();
-  PageController pageController = PageController(viewportFraction: 0.7);
+  PageController pageController = PageController(viewportFraction: 0.45);
   @override
   void initState() {
     super.initState();
-    pageController = PageController(viewportFraction: 0.7, initialPage: 1);
+    pageController = PageController(viewportFraction: 0.45, initialPage: 1);
   }
 
   @override
@@ -33,7 +33,7 @@ class _SlideWidgetState extends State<SlideWidget> {
     super.dispose();
   }
 
-  Widget slide(Documents item, double _height) {
+  Widget BuildGridItem(Documents item, double _height) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
       width: double.infinity,
@@ -48,7 +48,7 @@ class _SlideWidgetState extends State<SlideWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            flex: 2,
+            flex: 1,
             child: Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 1.0, vertical: 1.0),
@@ -57,60 +57,8 @@ class _SlideWidgetState extends State<SlideWidget> {
                   Align(
                     alignment: Alignment.topCenter,
                     child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(55),
-                        bottomLeft: Radius.circular(15),
-                        bottomRight: Radius.circular(15),
-                      ),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.black38,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(70),
-                        bottomLeft: Radius.circular(15),
-                        bottomRight: Radius.circular(15),
-                      ),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.amber,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(75),
-                        bottomLeft: Radius.circular(15),
-                        bottomRight: Radius.circular(15),
-                      ),
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(80),
-                        bottomLeft: Radius.circular(15),
-                        bottomRight: Radius.circular(15),
-                      ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(300)),
                       child: CachedNetworkImage(
                         imageUrl: '${item.image}',
                         placeholder: (context, url) =>
@@ -123,7 +71,7 @@ class _SlideWidgetState extends State<SlideWidget> {
                       ),
                     ),
                   ),
-                  Align(
+                  /* Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       width: double.infinity,
@@ -155,7 +103,7 @@ class _SlideWidgetState extends State<SlideWidget> {
                         ]),
                       ),
                     ),
-                  )
+                  ) */
                 ],
               ),
             ),
@@ -207,10 +155,10 @@ class _SlideWidgetState extends State<SlideWidget> {
                       firts = false;
                     });
                   },
-                  itemCount: ctrHome.slideList.length,
+                  itemCount: ctrHome.popUpList.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      child: slide(ctrHome.slideList[index], _height),
+                      child: BuildGridItem(ctrHome.popUpList[index], _height),
                     );
                   })),
           Expanded(
@@ -219,7 +167,7 @@ class _SlideWidgetState extends State<SlideWidget> {
                 shrinkWrap: true,
                 //gridDelegate: SliverGridDelegate(),
                 scrollDirection: Axis.horizontal,
-                itemCount: ctrHome.slideList.length,
+                itemCount: ctrHome.popUpList.length,
                 itemBuilder: (context, index) {
                   //print('index:${index} - currentselect:${currentselect}');
                   return buildIndicator(index == currentselect);

@@ -1,5 +1,9 @@
 import 'package:app_vs2/app/data/models/document_model.dart';
+import 'package:app_vs2/app/pages/home/widgets/newupdate/grid_item.dart';
+import 'package:app_vs2/app/pages/home/widgets/newupdate/list_item.dart';
+import 'package:app_vs2/app/pages/home/widgets/sliver_header.dart';
 import 'package:app_vs2/app/pages/home/widgets/widgets_genres.dart';
+import 'package:app_vs2/app/pages/home/widgets/widgets_group.dart';
 
 import '/app/pages/home/widgets/widgets_slide.dart';
 
@@ -15,7 +19,7 @@ import 'package:flutter/material.dart';
 
 class HomePageMobile extends GetView<HomeController> {
   final TrackingScrollController scrollController;
-
+  final int modeview = 0;
   const HomePageMobile({
     Key? key,
     required this.scrollController,
@@ -31,6 +35,8 @@ class HomePageMobile extends GetView<HomeController> {
     //call dynamic
     List<LangModel> datalang = controller.langList.toList();
     List<Documents> dataslide = controller.slideList.toList();
+    List<Documents> dataPopupGroup = controller.popUpList.toList();
+    List<Documents> dataNewGroup = controller.newUpdateList.toList();
     return CustomScrollView(
       controller: scrollController,
       slivers: [
@@ -67,10 +73,10 @@ class HomePageMobile extends GetView<HomeController> {
             child: LangsList(lstlang: datalang),
           ),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
+        const SliverPadding(
+          padding: EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
           sliver: SliverToBoxAdapter(
-            child: SlideList(items: dataslide),
+            child: SlideList(),
           ),
         ),
         const SliverPadding(
@@ -79,21 +85,63 @@ class HomePageMobile extends GetView<HomeController> {
             child: GenresList(),
           ),
         ),
+        const SliverPadding(
+          padding: EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
+          sliver: SliverToBoxAdapter(
+            child: WidgetGroup(),
+          ),
+        ),
+        /*  const SliverPadding(
+          padding: EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
+          sliver: SliverToBoxAdapter(
+            child: WidgetNewUpdateGroup(),
+          ),
+        ), */
+        const SliverSubHeader(
+            backgroundColor: Palette.accentDark, text: 'New Update'),
+        Obx(() {
+          if (controller.modeview.value == 0) {
+            return SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  //final Post post = posts[index];
+                  return WidgetListItem(item: controller.newUpdateList[index]);
+                },
+                childCount: controller.newUpdateList.length,
+              ),
+            );
+          } else {
+            return SliverGrid(
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200.0,
+                //mainAxisSpacing: 10,
+                //crossAxisSpacing: 10,
+                childAspectRatio: 1,
+              ),
+              // 2
+              delegate: SliverChildBuilderDelegate(
+                (context, index) =>
+                    WidgetGridItem(item: controller.newUpdateList[index]),
+                childCount: controller.newUpdateList.length,
+              ),
+            );
+          }
+        }),
         /*  SliverPadding(
           padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
           sliver: SliverToBoxAdapter(
             child: LangsList(lstlang: datalang),
           ),
         ), */
-        SliverList(
+        /*   SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               //final Post post = posts[index];
-              return const Text("Text");
+              return Text(controller.newUpdateList[index].name!);
             },
-            childCount: 52,
+            childCount: controller.newUpdateList.length,
           ),
-        ),
+        ), */
       ],
     );
   }

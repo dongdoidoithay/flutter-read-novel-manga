@@ -9,6 +9,8 @@ import '/app/data/repository/index.dart';
 class HomeController extends GetxController with BaseController {
   final Repository repository;
   HomeController({required this.repository}) : assert(repository != null);
+//modeview
+  var modeview = 0.obs;
   //loading lang
   var loading = true.obs;
   var langList = <LangModel>[].obs;
@@ -17,6 +19,9 @@ class HomeController extends GetxController with BaseController {
 //loading home
   var loadinghome = true.obs;
   var slideList = <Documents>[].obs;
+//loading group
+  var popUpList = <Documents>[].obs;
+  var newUpdateList = <Documents>[].obs;
 
   @override
   void onInit() {
@@ -51,10 +56,19 @@ class HomeController extends GetxController with BaseController {
 
   void loadbycontry() async {
     var _slidelist = <Documents>[];
-    await repository.homeRepository.getHome("novels", "en", _slidelist);
+    var _popuplist = <Documents>[];
+    var _newlist = <Documents>[];
+    await repository.homeRepository
+        .getHome("novels", "en", _slidelist, _popuplist, _newlist);
     if (_slidelist.isNotEmpty) {
       loadinghome.value = false;
       slideList.assignAll(_slidelist);
+    }
+    if (_popuplist.isNotEmpty) {
+      popUpList.assignAll(_popuplist);
+    }
+    if (_newlist.isNotEmpty) {
+      newUpdateList.assignAll(_newlist);
     }
   }
 

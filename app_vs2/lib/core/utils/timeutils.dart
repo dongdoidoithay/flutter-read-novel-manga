@@ -5,7 +5,7 @@ class TimeUtils {
     var date = DateTime.parse(times);
     var diff = now.difference(date);
 
-    print(diff);
+    // print(diff);
     if (diff.inMinutes < 2) {
       time = 'Just now';
     } else {

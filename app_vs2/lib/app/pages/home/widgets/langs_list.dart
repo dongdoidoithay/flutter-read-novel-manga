@@ -52,7 +52,7 @@ class LangsList extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
         margin: const EdgeInsets.symmetric(horizontal: 5.0),
         width: double.infinity,
-        height: _height * 0.07,
+        height: _height * 0.055,
         decoration: const BoxDecoration(
           color: Colors.blueAccent,
           gradient: Palette.createRoomGradient,
