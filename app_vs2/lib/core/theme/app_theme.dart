@@ -1,15 +1,19 @@
+import 'package:app_vs2/core/utils/palette.dart';
 import 'package:flutter/material.dart';
-import 'app_color.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+//import 'app_color.dart';
 
 class AppTheme {
   //
   AppTheme._();
 
   static final ThemeData lightTheme = ThemeData(
+    fontFamily: "Roboto",
     //primarySwatch: Colors.blue,
     // brightness: Brightness.light,
     canvasColor: Colors.white,
-    scaffoldBackgroundColor: Colors.white,
+    highlightColor: Colors.amberAccent,
+    scaffoldBackgroundColor: Palette.online,
     primaryTextTheme:
         const TextTheme(headline6: TextStyle(color: Colors.black)),
     appBarTheme: const AppBarTheme(
@@ -25,54 +29,66 @@ class AppTheme {
     iconTheme: const IconThemeData(
       color: Colors.black,
     ),
-    textTheme: const TextTheme(
+    textTheme: TextTheme(
       headline6: TextStyle(
         color: Colors.black,
-        fontSize: 20.0,
+        fontSize: 14.sp,
       ),
       headline4: TextStyle(
         color: Colors.black54,
-      ),
-      subtitle2: TextStyle(
-        color: Colors.black,
-        fontSize: 18.0,
+        fontSize: 16.sp,
       ),
       headline3: TextStyle(
         color: Colors.black,
+        fontSize: 18.sp,
       ),
       headline2: TextStyle(
         color: Colors.black,
+        fontSize: 20.sp,
       ),
       headline1: TextStyle(
         color: Colors.black,
+        fontSize: 24.sp,
       ),
       subtitle1: TextStyle(
+        fontSize: 16.sp,
         color: Colors.black,
+      ),
+      subtitle2: TextStyle(
+        color: Colors.black,
+        fontSize: 15.sp,
       ),
       bodyText2: TextStyle(
         color: Colors.black,
+        fontSize: 13.sp,
       ),
       bodyText1: TextStyle(
         color: Colors.black,
+        fontSize: 14.sp,
       ),
       overline: TextStyle(
         color: Colors.black,
+        fontSize: 12.sp,
+        letterSpacing: 0.1,
       ),
       caption: TextStyle(
         color: Colors.black,
+        fontSize: 14.sp,
       ),
     ),
   );
 
   static final ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: AppColors.primary,
+    fontFamily: "Dancing",
+    scaffoldBackgroundColor: Palette.primary,
+    highlightColor: Colors.amberAccent,
     brightness: Brightness.dark,
     bottomSheetTheme: BottomSheetThemeData(
-      backgroundColor: AppColors.primary,
+      backgroundColor: Palette.primary,
     ),
-    canvasColor: AppColors.primary,
+    canvasColor: Palette.primary,
     appBarTheme: AppBarTheme(
-      color: AppColors.primary,
+      color: Palette.primary,
       iconTheme: const IconThemeData(
         color: Colors.white,
       ),
@@ -80,7 +96,7 @@ class AppTheme {
     dividerColor: Colors.grey.shade800,
     bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black),
     cardTheme: CardTheme(
-      color: AppColors.primary,
+      color: Palette.primary,
     ),
     iconTheme: const IconThemeData(
       color: Colors.white,

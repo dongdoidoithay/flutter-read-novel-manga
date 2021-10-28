@@ -1,11 +1,13 @@
 import 'package:app_vs2/app/controllers/home_controller.dart';
 import 'package:app_vs2/app/data/models/models.dart';
 import 'package:app_vs2/core/utils/palette.dart';
+import 'package:app_vs2/core/utils/shimmer.dart';
 import 'package:app_vs2/core/utils/utils.dart';
 import 'package:app_vs2/core/values/string_assets.dart';
 import 'package:app_vs2/core/widgets/loading_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -33,13 +35,92 @@ class _ItemGroupWidgetState extends State<ItemGroupWidget> {
     super.dispose();
   }
 
+  Widget LoadingWidget() {
+    return Shimmer.fromColors(
+      baseColor: Palette.grey_200,
+      highlightColor: Palette.grey_300,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 5.0),
+        width: double.infinity,
+        decoration: BoxDecoration(
+            gradient: Palette.boxGradient,
+            borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+            border: Border.all(color: Colors.black, width: 1.r)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 1.0, vertical: 1.0),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(300)),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            gradient: Palette.boxGradient,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(300)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 4,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 5),
+                  Expanded(
+                    child: Container(
+                      height: 4.r,
+                      width: double.infinity,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Expanded(
+                    child: Container(
+                      height: 4.r,
+                      width: double.infinity,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Expanded(
+                    child: Container(
+                      height: 4.r,
+                      width: double.infinity,
+                      color: Colors.black,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget BuildGridItem(Documents item, double _height) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
       width: double.infinity,
       decoration: const BoxDecoration(
         //color: Colors.white,
-        gradient: Palette.boxGradient,
+        gradient: Palette.boxGradientSlide,
         //border: Border.all(width: 1, color: Colors.red),
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
       ),
@@ -141,7 +222,7 @@ class _ItemGroupWidgetState extends State<ItemGroupWidget> {
 
   Widget buildList(double _height) {
     if (ctrHome.loadinghome.value == true) {
-      return const LoadingWidget();
+      return LoadingWidget();
     } else {
       return Column(
         children: [
@@ -161,7 +242,7 @@ class _ItemGroupWidgetState extends State<ItemGroupWidget> {
                       child: BuildGridItem(ctrHome.popUpList[index], _height),
                     );
                   })),
-          Expanded(
+          /*   Expanded(
             flex: 1,
             child: ListView.builder(
                 shrinkWrap: true,
@@ -172,7 +253,7 @@ class _ItemGroupWidgetState extends State<ItemGroupWidget> {
                   //print('index:${index} - currentselect:${currentselect}');
                   return buildIndicator(index == currentselect);
                 }),
-          )
+          ) */
         ],
       );
     }

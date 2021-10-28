@@ -2,6 +2,8 @@ import 'package:app_vs2/app/data/models/models.dart';
 import 'package:app_vs2/core/utils/utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class WidgetListItem extends StatelessWidget {
   final Documents item;
@@ -9,11 +11,10 @@ class WidgetListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double _height = Responsive.height(context);
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
       width: double.infinity,
-      height: _height * 0.12,
+      height: 0.12.sh,
       decoration: const BoxDecoration(
         //color: Colors.white,
         gradient: Palette.boxNewUpdateGradient,
@@ -54,27 +55,28 @@ class WidgetListItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 9),
+                const SizedBox(height: 9.0),
                 Expanded(
-                    child: Text(
-                  '${item.name}',
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20,
-                      color: Palette.grey_95),
-                )),
+                  child: Text(
+                    '${item.name}',
+                    overflow: TextOverflow.ellipsis,
+                    style: Get.textTheme.caption!
+                        .copyWith(fontWeight: FontWeight.w600),
+                  ),
+                ),
                 Expanded(
                     child: Text(
                   '${item.nameOther}',
                   overflow: TextOverflow.ellipsis,
+                  style:
+                      Get.textTheme.overline!.copyWith(fontFamily: "Dancing"),
                 )),
                 Expanded(
                     child: Text(
                   '${item.dateText}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Palette.grey_100_,
+                  style: Get.textTheme.overline!.copyWith(
+                    fontFamily: "Dancing",
+                    color: Get.theme.focusColor,
                   ),
                 )),
                 Expanded(

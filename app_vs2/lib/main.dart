@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'app/pages/home/home_page.dart';
@@ -13,23 +14,23 @@ import 'core/theme/app_color.dart';
 import 'core/theme/app_theme.dart';
 
 Future<void> main() async {
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: AppColors.primary.withOpacity(1),
-  ));
-  //set storage
   await GetStorage.init();
-  //
-
-  runApp(GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-    initialBinding: HomeBinding(),
-    initialRoute: Routes.dashboard,
-    theme: AppTheme.lightTheme,
-    defaultTransition: Transition.fade,
-    getPages: AppPages.pages,
-    //home: const HomePage(),
-    locale: const Locale('vi', 'VN'),
-    translationsKeys: AppTranslation.translations,
-    //translations: FuncAppTranslations(),
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: AppColors.primary.withOpacity(0.1),
   ));
+
+  runApp(
+    ScreenUtilInit(
+        builder: () => GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              initialBinding: HomeBinding(),
+              initialRoute: Routes.dashboard,
+              theme: AppTheme.lightTheme,
+              defaultTransition: Transition.fade,
+              getPages: AppPages.pages,
+              //home: const HomePage(),
+              locale: const Locale('vi', 'VN'),
+              translationsKeys: AppTranslation.translations,
+            )),
+  );
 }

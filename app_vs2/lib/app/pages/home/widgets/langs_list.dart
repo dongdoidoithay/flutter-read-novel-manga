@@ -1,5 +1,9 @@
+import 'package:app_vs2/core/utils/shimmer.dart';
+import 'package:app_vs2/core/values/constants.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
 import '/core/utils/utils.dart';
-import '/core/widgets/loading_widget.dart';
 import '/app/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
@@ -8,33 +12,90 @@ import 'package:flutter/material.dart';
 
 import 'country/contry_widget.dart';
 
+var ctrHome = Get.find<HomeController>();
+final box = GetStorage();
+
 class LangsList extends StatelessWidget {
   final List<LangModel> lstlang;
   const LangsList({
     required this.lstlang,
     Key? key,
   }) : super(key: key);
-  Widget item(name, icon) {
+  //loadiing
+  Widget loadding() {
+    return Shimmer.fromColors(
+      baseColor: Palette.grey_200,
+      highlightColor: Palette.grey_300,
+      enabled: true,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 4,
+        itemBuilder: (BuildContext context, int index) {
+          return itemloading();
+        },
+      ),
+    );
+  }
+
+  Widget itemloading() {
     return Container(
       decoration: const BoxDecoration(color: Colors.blueAccent),
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
-      width: 130,
-      child: CoutryWidget(iconName: icon, name: name),
+      width: 130.r,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Get.theme.scaffoldBackgroundColor,
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+        child: Row(
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const Expanded(
+              flex: 1,
+              child: Text(''),
+            ),
+            SizedBox(
+              width: 5.r,
+            ),
+            const Expanded(
+              flex: 5,
+              child: Text('loading..'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+  //end loading
+
+  Widget item(lang) {
+    return Obx(
+      () => GestureDetector(
+        onTap: () {
+          var _val = lang.id + '-' + lang.type;
+          box.write(Constants.keyLang, _val); //dung cho init ung dung
+          //ctrHome.langItem.value = lang;
+          ctrHome.changetype(lang);
+        },
+        child: Container(
+          width: 110.r,
+          child: CoutryWidget(item: lang, itemselect: ctrHome.langItem.value),
+        ),
+      ),
     );
   }
 
   Widget buildList() {
-    var ctrHome = Get.find<HomeController>();
     if (ctrHome.loading.value == true) {
-      //print('#->loading');
-      return const LoadingWidget();
+      return loadding();
     } else {
       return ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: ctrHome.langList.length,
         itemBuilder: (BuildContext context, int index) {
           final lang = ctrHome.langList[index];
-          return item(lang.name, lang.icon);
+          return item(lang);
         },
       );
     }
@@ -48,16 +109,22 @@ class LangsList extends StatelessWidget {
     final double _width = Responsive.width(context);
     final double _height = Responsive.height(context);
     return Obx(() {
-      return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-        width: double.infinity,
-        height: _height * 0.055,
-        decoration: const BoxDecoration(
-          color: Colors.blueAccent,
-          gradient: Palette.createRoomGradient,
-        ),
-        child: buildList(),
+      return Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+            //margin: const EdgeInsets.symmetric(horizontal: 1.0),
+            width: double.infinity,
+            height: _height * 0.045,
+            decoration: const BoxDecoration(
+                color: Palette.accentDark,
+                // gradient: Palette.createRoomGradient,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(5.0),
+                    topRight: Radius.circular(5.0))),
+            child: buildList(),
+          ),
+        ],
       );
     });
   }

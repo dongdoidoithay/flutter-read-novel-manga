@@ -25,6 +25,8 @@ class Palette {
   static const Color grey_90 = Color(0xFF263238);
   static const Color grey_95 = Color(0xFF1a1a1a);
   static const Color grey_100_ = Color(0xFF0d0d0d);
+  static const Color grey_300 = Color(0xFFE0E0E0);
+  static const Color grey_200 = Color(0xFFEEEEEE);
 
   static const LinearGradient createRoomGradient = LinearGradient(
     colors: [Color(0xFF496AE1), Color(0xFFCE48B1)],
@@ -47,6 +49,12 @@ class Palette {
     //end: Alignment.bottomCenter,
     colors: [grey_3, grey_10, grey_20, grey_40],
   );
+  static const LinearGradient boxGradientSlide = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Colors.transparent, grey_200],
+  );
+
   static const LinearGradient boxNewUpdateGridGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,

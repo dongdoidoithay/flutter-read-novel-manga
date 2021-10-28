@@ -4,6 +4,7 @@ import '/app/pages/home/home_page.dart';
 import '/app/bindings/home_binding.dart';
 
 class AppPages extends Routes {
+  //GetStorage box = GetStorage();
   static final pages = [
     GetPage(
       name: Routes.dashboard,

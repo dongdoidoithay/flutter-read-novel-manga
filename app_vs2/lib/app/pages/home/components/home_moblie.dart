@@ -4,6 +4,7 @@ import 'package:app_vs2/app/pages/home/widgets/newupdate/list_item.dart';
 import 'package:app_vs2/app/pages/home/widgets/sliver_header.dart';
 import 'package:app_vs2/app/pages/home/widgets/widgets_genres.dart';
 import 'package:app_vs2/app/pages/home/widgets/widgets_group.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '/app/pages/home/widgets/widgets_slide.dart';
 
@@ -45,11 +46,11 @@ class HomePageMobile extends GetView<HomeController> {
           backgroundColor: Colors.white,
           title: Text(
             'name_app'.tr,
-            style: const TextStyle(
+            style: Get.textTheme.headline1!.copyWith(
               color: Palette.facebookBlue,
-              fontSize: 28.0,
+              fontSize: 26.sp,
               fontWeight: FontWeight.bold,
-              letterSpacing: -1.2,
+              fontFamily: "Dancing",
             ),
           ),
           centerTitle: false,
@@ -57,18 +58,18 @@ class HomePageMobile extends GetView<HomeController> {
           actions: [
             CircleButton(
               icon: Icons.search,
-              iconSize: 23.0,
+              iconSize: 23.r,
               onPressed: () => searchInfo(),
             ),
             CircleButton(
               icon: Icons.notifications_active,
-              iconSize: 23.0,
+              iconSize: 23.r,
               onPressed: () => searchInfo(),
             ),
           ],
         ),
         SliverPadding(
-          padding: const EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 5.0),
+          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 5.0),
           sliver: SliverToBoxAdapter(
             child: LangsList(lstlang: datalang),
           ),

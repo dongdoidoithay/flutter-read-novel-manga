@@ -6,4 +6,7 @@ class Constants {
   }
 
   static String baseUrl = 'https://app-novels-api.herokuapp.com/api/app-v1/';
+
+  //key -storegate
+  static String keyLang = 'KEY-LANG-SELECT';
 }

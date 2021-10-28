@@ -1,11 +1,13 @@
 import 'package:app_vs2/app/controllers/home_controller.dart';
 import 'package:app_vs2/app/data/models/models.dart';
 import 'package:app_vs2/core/utils/palette.dart';
+import 'package:app_vs2/core/utils/shimmer.dart';
 import 'package:app_vs2/core/utils/utils.dart';
 import 'package:app_vs2/core/values/string_assets.dart';
 import 'package:app_vs2/core/widgets/loading_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -33,13 +35,155 @@ class _SlideWidgetState extends State<SlideWidget> {
     super.dispose();
   }
 
+  Widget slideShimmer() {
+    return Shimmer.fromColors(
+      baseColor: Palette.grey_200,
+      highlightColor: Palette.grey_300,
+      child: PageView.builder(
+        itemCount: 1,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: const EdgeInsets.symmetric(horizontal: 5.0),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: Palette.boxGradientSlide,
+              border: Border.all(
+                  width: 2, color: Colors.red, style: BorderStyle.solid),
+              borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 1.0, vertical: 1.0),
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(55),
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            ),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.black38,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(70),
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            ),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.amber,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(75),
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            ),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(80),
+                              bottomLeft: Radius.circular(15),
+                              bottomRight: Radius.circular(15),
+                            ),
+                            child: Container(),
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            width: double.infinity,
+                            height: 0.035.sh,
+                            padding: const EdgeInsets.only(
+                                left: 8, top: 1, bottom: 1),
+                            color: Colors.black,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 5),
+                      Expanded(
+                        child: Container(
+                          height: 4.r,
+                          width: double.infinity,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Expanded(
+                        child: Container(
+                          height: 4.r,
+                          width: double.infinity,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      Expanded(
+                        child: Container(
+                          height: 4.r,
+                          width: double.infinity,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   Widget slide(Documents item, double _height) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
       width: double.infinity,
       decoration: const BoxDecoration(
-        //color: Colors.white,
-        gradient: Palette.boxGradient,
+        gradient: Palette.boxGradientSlide,
         //border: Border.all(width: 1, color: Colors.red),
         borderRadius: BorderRadius.all(Radius.circular(12.0)),
       ),
@@ -127,7 +271,7 @@ class _SlideWidgetState extends State<SlideWidget> {
                     alignment: Alignment.bottomCenter,
                     child: Container(
                       width: double.infinity,
-                      height: _height * 0.035,
+                      height: 0.031.sh,
                       padding:
                           const EdgeInsets.only(left: 8, top: 1, bottom: 1),
                       decoration: BoxDecoration(
@@ -139,18 +283,19 @@ class _SlideWidgetState extends State<SlideWidget> {
                       ),
                       child: RichText(
                         text: TextSpan(children: [
-                          const TextSpan(
+                          TextSpan(
                               text: 'Ep ',
-                              style: TextStyle(
-                                color: Colors.amber,
+                              style: Get.theme.textTheme.subtitle1!.copyWith(
+                                color: Get.theme.highlightColor,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18,
+                                fontSize: 16.sp,
                               )),
                           TextSpan(
                               text: '${item.detailDocuments![0].idDetail}',
-                              style: const TextStyle(
+                              style: Get.theme.textTheme.subtitle2!.copyWith(
+                                color: Get.theme.canvasColor,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                                fontSize: 15.sp,
                               )),
                         ]),
                       ),
@@ -161,7 +306,7 @@ class _SlideWidgetState extends State<SlideWidget> {
             ),
           ),
           Expanded(
-            flex: 4,
+            flex: 5,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -171,17 +316,22 @@ class _SlideWidgetState extends State<SlideWidget> {
                     child: Text(
                   '${item.name}',
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
+                  style: Get.theme.textTheme.caption!.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 )),
                 Expanded(
                     child: Text(
                   '${item.nameOther}',
                   overflow: TextOverflow.ellipsis,
+                  style: Get.theme.textTheme.overline!
+                      .copyWith(fontFamily: "Dancing"),
                 )),
                 Expanded(
                     child: Text(
                   '${item.dateText}',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: Get.theme.textTheme.overline!
+                      .copyWith(fontWeight: FontWeight.w500),
                 )),
               ],
             ),
@@ -193,7 +343,7 @@ class _SlideWidgetState extends State<SlideWidget> {
 
   Widget buildList(double _height) {
     if (ctrHome.loadinghome.value == true) {
-      return const LoadingWidget();
+      return slideShimmer();
     } else {
       return Column(
         children: [

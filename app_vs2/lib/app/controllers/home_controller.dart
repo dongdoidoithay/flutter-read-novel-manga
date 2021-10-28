@@ -74,7 +74,8 @@ class HomeController extends GetxController with BaseController {
 
   void loadhome() async {}
 
-  changeContry(value) {
+  changetype(value) {
     langItem.value = value;
+    //load lai
   }
 }

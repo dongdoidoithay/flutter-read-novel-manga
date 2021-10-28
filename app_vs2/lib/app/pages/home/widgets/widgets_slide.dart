@@ -3,6 +3,7 @@ import 'package:app_vs2/app/pages/home/widgets/slide/slide_widget.dart';
 import 'package:app_vs2/core/utils/responsive.dart';
 import 'package:app_vs2/core/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SlideList extends StatelessWidget {
   const SlideList({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class SlideList extends StatelessWidget {
       //padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
       margin: const EdgeInsets.only(top: 0),
       width: double.infinity,
-      height: _height * 0.14,
+      height: 0.12.sh,
       /*  decoration: const BoxDecoration(
         //color: Colors.blueAccent,
         gradient: Palette.storyGradient,

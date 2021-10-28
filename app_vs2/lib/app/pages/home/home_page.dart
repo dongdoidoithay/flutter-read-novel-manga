@@ -1,3 +1,5 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '/core/utils/responsive.dart';
 import 'package:flutter/material.dart';
 

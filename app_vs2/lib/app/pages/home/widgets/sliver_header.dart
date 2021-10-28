@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:app_vs2/app/controllers/home_controller.dart';
 import 'package:app_vs2/core/utils/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 // 1
@@ -22,42 +23,45 @@ class SliverSubHeader extends StatelessWidget {
       pinned: false,
       delegate: _SliverAppBarDelegate(
         // 2
-        minHeight: 30,
-        maxHeight: 40,
+        minHeight: 20,
+        maxHeight: 30,
         // 3
         child: Container(
-          color: backgroundColor,
+          //color: backgroundColor,
           child: Row(
             children: [
               Expanded(
-                  flex: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Palette.primary,
-                        border: Border.all(
-                            color: Palette.facebookBlue,
-                            width: 2,
-                            style: BorderStyle.solid)),
-                  )),
-              Expanded(
-                flex: 20,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    text,
-                    style: const TextStyle(
-                        color: Palette.grey_95,
-                        fontSize: 23,
-                        fontWeight: FontWeight.bold),
+                flex: 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Palette.primary,
+                    border: Border.all(
+                      color: Palette.facebookBlue,
+                      width: 1,
+                      style: BorderStyle.solid,
+                    ),
                   ),
                 ),
               ),
               Expanded(
-                flex: 5,
+                flex: 30,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Text(
+                    text,
+                    style: Get.textTheme.caption!
+                        .copyWith(fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 4,
                 child: Ink(
+                  padding: EdgeInsets.only(bottom: 3.r),
                   child: IconButton(
+                    padding: EdgeInsets.only(top: 0.r),
                     icon: const Icon(Icons.grid_4x4_sharp),
-                    color: Colors.white,
+                    color: Get.theme.highlightColor,
                     onPressed: () {
                       ctrHome.modeview.value = 1;
                     },
@@ -65,11 +69,12 @@ class SliverSubHeader extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 5,
+                flex: 4,
                 child: Ink(
                   child: IconButton(
+                    padding: EdgeInsets.only(top: 0.r),
                     icon: const Icon(Icons.list_sharp),
-                    color: Colors.white,
+                    color: Get.theme.highlightColor,
                     onPressed: () {
                       ctrHome.modeview.value = 0;
                     },
