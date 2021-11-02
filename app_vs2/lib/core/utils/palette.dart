@@ -13,7 +13,7 @@ class Palette {
   static const Color accent = Color(0xfff7892b);
   static const Color accentDark = Color(0xfff7892b);
   static const Color accentLight = Color(0xfff7892b);
-  static const Color box1 = Color(0xFFFFD558);
+  static const Color box1 = Color(0xFF302E28);
 
   static const Color grey_3 = Color(0xFFf7f7f7);
   static const Color grey_5 = Color(0xFFf2f2f2);
@@ -60,5 +60,11 @@ class Palette {
     end: Alignment.bottomCenter,
     //colors: [scaffold, grey_10, grey_20, accent],
     colors: [Color(0xFF496AE1), Color(0xFFCE48B1)],
+  );
+
+  static const LinearGradient backgroudGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Colors.transparent, grey_3, grey_5, grey_10, grey_40],
   );
 }

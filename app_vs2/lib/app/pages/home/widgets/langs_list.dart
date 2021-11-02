@@ -1,7 +1,9 @@
 import 'package:app_vs2/core/utils/shimmer.dart';
 import 'package:app_vs2/core/values/constants.dart';
+import 'package:app_vs2/core/values/string_assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get_storage/get_storage.dart';
 import '/core/utils/utils.dart';
 import '/app/controllers/home_controller.dart';
@@ -14,6 +16,7 @@ import 'country/contry_widget.dart';
 
 var ctrHome = Get.find<HomeController>();
 final box = GetStorage();
+PageController pageController = PageController(viewportFraction: 0.32);
 
 class LangsList extends StatelessWidget {
   final List<LangModel> lstlang;
@@ -21,6 +24,7 @@ class LangsList extends StatelessWidget {
     required this.lstlang,
     Key? key,
   }) : super(key: key);
+
   //loadiing
   Widget loadding() {
     return Shimmer.fromColors(
@@ -78,7 +82,7 @@ class LangsList extends StatelessWidget {
           //ctrHome.langItem.value = lang;
           ctrHome.changetype(lang);
         },
-        child: Container(
+        child: SizedBox(
           width: 110.r,
           child: CoutryWidget(item: lang, itemselect: ctrHome.langItem.value),
         ),
@@ -101,6 +105,20 @@ class LangsList extends StatelessWidget {
     }
   }
 
+  Widget buildWaper() {
+    if (ctrHome.loading.value == true) {
+      return loadding();
+    } else {
+      return PageView.builder(
+          controller: pageController,
+          itemCount: ctrHome.langList.length,
+          itemBuilder: (context, index) {
+            final lang = ctrHome.langList[index];
+            return Container(child: item(lang));
+          });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final bool isMobile = Responsive.isMobile(context);
@@ -111,18 +129,35 @@ class LangsList extends StatelessWidget {
     return Obx(() {
       return Row(
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
-            //margin: const EdgeInsets.symmetric(horizontal: 1.0),
-            width: double.infinity,
-            height: _height * 0.045,
-            decoration: const BoxDecoration(
-                color: Palette.accentDark,
-                // gradient: Palette.createRoomGradient,
-                borderRadius: BorderRadius.only(
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+              width: double.infinity,
+              height: _height * 0.035,
+              decoration: const BoxDecoration(
+                  color: Palette.facebookBlue,
+                  // gradient: Palette.createRoomGradient,
+                  borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(5.0),
-                    topRight: Radius.circular(5.0))),
-            child: buildList(),
+                  )),
+              child: Image.asset(StringAsset.iconPngfire),
+            ),
+          ),
+          Expanded(
+            flex: 11,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
+              width: double.infinity,
+              height: _height * 0.035,
+              decoration: const BoxDecoration(
+                  color: Palette.accentDark,
+                  borderRadius:
+                      BorderRadius.only(topRight: Radius.circular(5.0))),
+              child: buildList(),
+            ),
           ),
         ],
       );

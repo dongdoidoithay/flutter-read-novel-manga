@@ -273,7 +273,7 @@ class _SlideWidgetState extends State<SlideWidget> {
                       width: double.infinity,
                       height: 0.031.sh,
                       padding:
-                          const EdgeInsets.only(left: 8, top: 1, bottom: 1),
+                          const EdgeInsets.only(left: 8, top: 5, bottom: 1),
                       decoration: BoxDecoration(
                         border: Border.all(width: 1, color: Colors.black12),
                         //color: Colors.blueAccent,
@@ -288,14 +288,14 @@ class _SlideWidgetState extends State<SlideWidget> {
                               style: Get.theme.textTheme.subtitle1!.copyWith(
                                 color: Get.theme.highlightColor,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 16.sp,
+                                fontSize: 10.sp,
                               )),
                           TextSpan(
                               text: '${item.detailDocuments![0].idDetail}',
                               style: Get.theme.textTheme.subtitle2!.copyWith(
                                 color: Get.theme.canvasColor,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 15.sp,
+                                fontSize: 9.sp,
                               )),
                         ]),
                       ),
@@ -306,7 +306,7 @@ class _SlideWidgetState extends State<SlideWidget> {
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 7,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,

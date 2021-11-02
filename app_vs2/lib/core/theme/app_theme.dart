@@ -68,12 +68,12 @@ class AppTheme {
       ),
       overline: TextStyle(
         color: Colors.black,
-        fontSize: 12.sp,
+        fontSize: 9.sp,
         letterSpacing: 0.1,
       ),
       caption: TextStyle(
         color: Colors.black,
-        fontSize: 14.sp,
+        fontSize: 11.sp,
       ),
     ),
   );

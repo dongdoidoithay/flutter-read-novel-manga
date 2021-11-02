@@ -16,17 +16,17 @@ class SlideList extends StatelessWidget {
     final double _width = Responsive.width(context);
     final double _height = Responsive.height(context);
 
-    //print('--> count');
-    //print(items.length);
     return Container(
-      //padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+      padding: const EdgeInsets.symmetric(horizontal: 1.0, vertical: 5.0),
       margin: const EdgeInsets.only(top: 0),
       width: double.infinity,
-      height: 0.12.sh,
-      /*  decoration: const BoxDecoration(
-        //color: Colors.blueAccent,
-        gradient: Palette.storyGradient,
-      ), */
+      height: 0.1.sh,
+      decoration: const BoxDecoration(
+          color: Colors.deepOrange,
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(5.0), topLeft: Radius.circular(5.0))
+          //gradient: Palette.backgroudGradient,
+          ),
       child: const SlideWidget(),
     );
   }

@@ -69,7 +69,7 @@ class CoutryWidget extends StatelessWidget {
             flex: 5,
             child: Text(
               '${item.name}',
-              style: Get.textTheme.overline!.copyWith(
+              style: Get.textTheme.caption!.copyWith(
                 fontWeight: active ? FontWeight.bold : FontWeight.w500,
               ),
             ),

@@ -43,14 +43,14 @@ class HomePageMobile extends GetView<HomeController> {
       slivers: [
         SliverAppBar(
           //brightness: Brightness.light,
+          toolbarHeight: 40, //chieu cao
           backgroundColor: Colors.white,
           title: Text(
             'name_app'.tr,
             style: Get.textTheme.headline1!.copyWith(
               color: Palette.facebookBlue,
-              fontSize: 26.sp,
-              fontWeight: FontWeight.bold,
-              fontFamily: "Dancing",
+              fontSize: 20.sp,
+              fontFamily: "Roboto",
             ),
           ),
           centerTitle: false,
@@ -58,12 +58,12 @@ class HomePageMobile extends GetView<HomeController> {
           actions: [
             CircleButton(
               icon: Icons.search,
-              iconSize: 23.r,
+              iconSize: 15.r,
               onPressed: () => searchInfo(),
             ),
             CircleButton(
               icon: Icons.notifications_active,
-              iconSize: 23.r,
+              iconSize: 15.r,
               onPressed: () => searchInfo(),
             ),
           ],
@@ -92,12 +92,6 @@ class HomePageMobile extends GetView<HomeController> {
             child: WidgetGroup(),
           ),
         ),
-        /*  const SliverPadding(
-          padding: EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 2.0),
-          sliver: SliverToBoxAdapter(
-            child: WidgetNewUpdateGroup(),
-          ),
-        ), */
         const SliverSubHeader(
             backgroundColor: Palette.accentDark, text: 'New Update'),
         Obx(() {
@@ -128,21 +122,6 @@ class HomePageMobile extends GetView<HomeController> {
             );
           }
         }),
-        /*  SliverPadding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
-          sliver: SliverToBoxAdapter(
-            child: LangsList(lstlang: datalang),
-          ),
-        ), */
-        /*   SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              //final Post post = posts[index];
-              return Text(controller.newUpdateList[index].name!);
-            },
-            childCount: controller.newUpdateList.length,
-          ),
-        ), */
       ],
     );
   }

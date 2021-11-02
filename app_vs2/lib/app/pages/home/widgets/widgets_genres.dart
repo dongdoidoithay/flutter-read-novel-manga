@@ -1,13 +1,31 @@
 import 'package:app_vs2/core/utils/responsive.dart';
 import 'package:app_vs2/core/utils/utils.dart';
+import 'package:app_vs2/core/values/string_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 class GenresList extends StatelessWidget {
   const GenresList({
     Key? key,
   }) : super(key: key);
+
+  Widget boxCate() {
+    return Container(
+      child: Column(
+        children: [
+          Expanded(
+            child: SvgPicture.asset(StringAsset.iconFlagVn,
+                semanticsLabel: 'icon'),
+          ),
+          Expanded(
+            child: Text('abc'),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +34,12 @@ class GenresList extends StatelessWidget {
     final bool isDesktop = Responsive.isDesktop(context);
     final double _width = Responsive.width(context);
     final double _height = Responsive.height(context);
+
     return Container(
         padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
         margin: const EdgeInsets.symmetric(horizontal: 5.0),
         width: double.infinity,
-        height: _height * 0.09,
+        height: _height * 0.06,
         decoration: const BoxDecoration(
           color: Colors.blueAccent,
           gradient: Palette.createRoomGradient,
