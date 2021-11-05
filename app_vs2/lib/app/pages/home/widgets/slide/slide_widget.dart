@@ -22,11 +22,11 @@ class _SlideWidgetState extends State<SlideWidget> {
   bool firts = true;
   int currentselect = 1;
   var ctrHome = Get.find<HomeController>();
-  PageController pageController = PageController(viewportFraction: 0.7);
+  PageController pageController = PageController(viewportFraction: 0.5);
   @override
   void initState() {
     super.initState();
-    pageController = PageController(viewportFraction: 0.7, initialPage: 1);
+    pageController = PageController(viewportFraction: 0.5, initialPage: 1);
   }
 
   @override
@@ -179,6 +179,7 @@ class _SlideWidgetState extends State<SlideWidget> {
   }
 
   Widget slide(Documents item, double _height) {
+    print("height:${_height}");
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 5.0),
       width: double.infinity,
